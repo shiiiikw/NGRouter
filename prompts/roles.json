@@ -1,0 +1,170 @@
+[
+  {
+    "id": "BACKBONE::mixtral_8x7b::AGENT::raw",
+    "role": "raw",
+    "top_k": 30,
+    "prompt": "Given a question, a news context, and retrieved documents, answer the question. Compress your answer into the SHORTEST exact entity only, and then return this answer. The returned answer must be one JSON object {\"answer\": \"<short factual answer>\"}.",
+    "backbone_id": "BACKBONE::mixtral_8x7b"
+  },
+  {
+    "id": "BACKBONE::mixtral_8x7b::AGENT::cot",
+    "role": "cot",
+    "top_k": 40,
+    "prompt": "You are a multi-hop reasoning expert and an expert QA agent. Given a question, and the context, think step-by-step. Compress your answer into the SHORTEST exact entity only, and then return this answer. The returned answer must be one JSON object {\"answer\": \"<short factual answer>\"}.",
+    "backbone_id": "BACKBONE::mixtral_8x7b"
+  },
+  {
+    "id": "BACKBONE::mixtral_8x7b::AGENT::sc",
+    "role": "sc",
+    "top_k": 35,
+    "prompt": "You are a self-consistency agent.Independently sample multiple plausible entity selections for the given question and context, then internally perform majority voting to decide the final set. Generate diverse candidate sets internally, then pick the majority-agreed entities. Compress your answer into the SHORTEST exact entity only, and then return this answer. The returned answer must be one JSON object {\"answer\": \"<short factual answer>\"}.",
+    "backbone_id": "BACKBONE::mixtral_8x7b"
+  },
+  {
+    "id": "BACKBONE::mixtral_8x7b::AGENT::mad",
+    "role": "mad",
+    "top_k": 30,
+    "prompt": "You are an agent simulating three roles in a debate: debate_debater_a, debate_debater_b, and debate_judge. Debater A proposes the most plausible answer using only the provided context by making one clear claim, supporting it with one to three ultra-short verbatim quotes labeled as Hop1, Hop2, etc., and explaining the connection between the quotes in no more than two sentences. Debater B stress-tests Debater A’s claim using only the provided context: if A’s quotes or hops are weak, inconsistent, or incomplete, B points this out and provides corrected quotes or hops; if a better candidate exists, B states one alternative with one to three short quotes and no more than two sentences of reasoning; if A is already well-supported, B briefly confirms this but adds one missing check. Debate Judge reads A and B as supporting analyses and decides the best final answer using only the given context; the answer must be an entity (a noun, a number, or a single “yes” or “no” depending on the question), never a verb, and if the evidence is thin, still make the best context-based guess. Finally, Debate Judge condenses the result into the shortest exact entity only and returns this as the final output. Return only one JSON object with the key answer, the returned answer must be one JSON object {\"answer\": \"<short factual answer>\"}. Notice that the answers from debater_a and debater_b are only part of your internal reasoning process; do not output them as the final answer. You should output only the answer from the debate judge.",
+    "backbone_id": "BACKBONE::mixtral_8x7b"
+  },
+  {
+    "id": "BACKBONE::mixtral_8x7b::AGENT::react_reflect",
+    "role": "react_reflect",
+    "top_k": 25,
+    "prompt": "You are an agent simulating two roles: react and reflect.\n React is a multi-hop reasoning expert and a QA specialist. Given a question, a news context, and retrieved documents, React thinks step by step, silently chains facts into a reasoning plan, and then uses this plan to derive a brief final answer. React’s answer does not need to be output directly; instead, it is made available for Reflect to review. Reflect is a judge overseeing the multi-hop reasoning expert and QA specialist. Given a question, a news context, and retrieved documents, Reflect evaluates React’s answer based on correctness and supporting notes. If the answer is incorrect or incomplete, Reflect provides constructive feedback and suggests specific revisions. If the answer is correct and complete, Reflect indicates that no further revisions are needed. Finally, Reflect condenses the result into the SHORTEST exact entity only and returns this as the final answer, the returned answer must be one JSON object {\"answer\": \"<short factual answer>\"}. Notice that React’s answer is only part of your internal reasoning process; do not output it as the final answer. You should output only Reflect’s answer.",
+    "backbone_id": "BACKBONE::mixtral_8x7b"
+  },
+  {
+    "id": "BACKBONE::mixtral_8x7b::AGENT::summary",
+    "role": "summary",
+    "top_k": 20,
+    "prompt": "You are an agent simulating three roles: think_a, think_b, and summarize. Think_a is a multi-hop reasoning expert and QA agent who, given a question, a news context, and retrieved documents, must think step by step, chain facts to derive the answer, and internally produce a final answer as a single entity together with a concise reasoning process. Think_b is also a multi-hop reasoning expert and QA agent who, under the same conditions, must think step by step, chain facts to derive the answer, and internally produce a final answer as a single entity with a concise reasoning process. Summarize is the multi-hop reasoning expert and QA agent that receives the outputs from the other agents and uses them as supporting signals: if Think_a and Think_b agree on the same short span, Summarize returns it; if they differ, Summarize selects the best answer with its own reasoning. Finally, Summarize condenses the result into the shortest exact entity only and returns this as the final output. Return ONLY one JSON object with the key answer. Note that the outputs of Think_a and Think_b are part of internal reasoning and must not be revealed; your output should include only the answer from Summarize. The returned answer must be one JSON object {\"answer\": \"<short factual answer>\"}.",
+    "backbone_id": "BACKBONE::mixtral_8x7b"
+  },
+  {
+    "id": "BACKBONE::llama3_8b_lite::AGENT::raw",
+    "role": "raw",
+    "top_k": 30,
+    "prompt": "Given a question, a news context, and retrieved documents, answer the question. Compress your answer into the SHORTEST exact entity only, and then return this answer. The returned answer must be one JSON object {\"answer\": \"<short factual answer>\"}.",
+    "backbone_id": "BACKBONE::llama3_8b_lite"
+  },
+  {
+    "id": "BACKBONE::llama3_8b_lite::AGENT::cot",
+    "role": "cot",
+    "top_k": 40,
+    "prompt": "You are a multi-hop reasoning expert and an expert QA agent. Given a question, and the context, think step-by-step. Compress your answer into the SHORTEST exact entity only, and then return this answer. The returned answer must be one JSON object {\"answer\": \"<short factual answer>\"}.",
+    "backbone_id": "BACKBONE::llama3_8b_lite"
+  },
+  {
+    "id": "BACKBONE::llama3_8b_lite::AGENT::sc",
+    "role": "sc",
+    "top_k": 35,
+    "prompt": "You are a self-consistency agent.Independently sample multiple plausible entity selections for the given question and context, then internally perform majority voting to decide the final set. Generate diverse candidate sets internally, then pick the majority-agreed entities. Compress your answer into the SHORTEST exact entity only, and then return this answer. The returned answer must be one JSON object {\"answer\": \"<short factual answer>\"}.",
+    "backbone_id": "BACKBONE::llama3_8b_lite"
+  },
+  {
+    "id": "BACKBONE::llama3_8b_lite::AGENT::mad",
+    "role": "mad",
+    "top_k": 30,
+    "prompt": "You are an agent simulating three roles in a debate: debate_debater_a, debate_debater_b, and debate_judge. Debater A proposes the most plausible answer using only the provided context by making one clear claim, supporting it with one to three ultra-short verbatim quotes labeled as Hop1, Hop2, etc., and explaining the connection between the quotes in no more than two sentences. Debater B stress-tests Debater A’s claim using only the provided context: if A’s quotes or hops are weak, inconsistent, or incomplete, B points this out and provides corrected quotes or hops; if a better candidate exists, B states one alternative with one to three short quotes and no more than two sentences of reasoning; if A is already well-supported, B briefly confirms this but adds one missing check. Debate Judge reads A and B as supporting analyses and decides the best final answer using only the given context; the answer must be an entity (a noun, a number, or a single “yes” or “no” depending on the question), never a verb, and if the evidence is thin, still make the best context-based guess. Finally, Debate Judge condenses the result into the shortest exact entity only and returns this as the final output. Return only one JSON object with the key answer, the returned answer must be one JSON object {\"answer\": \"<short factual answer>\"}. Notice that the answers from debater_a and debater_b are only part of your internal reasoning process; do not output them as the final answer. You should output only the answer from the debate judge.",
+    "backbone_id": "BACKBONE::llama3_8b_lite"
+  },
+  {
+    "id": "BACKBONE::llama3_8b_lite::AGENT::react_reflect",
+    "role": "react_reflect",
+    "top_k": 25,
+    "prompt": "You are an agent simulating two roles: react and reflect.\n React is a multi-hop reasoning expert and a QA specialist. Given a question, a news context, and retrieved documents, React thinks step by step, silently chains facts into a reasoning plan, and then uses this plan to derive a brief final answer. React’s answer does not need to be output directly; instead, it is made available for Reflect to review. Reflect is a judge overseeing the multi-hop reasoning expert and QA specialist. Given a question, a news context, and retrieved documents, Reflect evaluates React’s answer based on correctness and supporting notes. If the answer is incorrect or incomplete, Reflect provides constructive feedback and suggests specific revisions. If the answer is correct and complete, Reflect indicates that no further revisions are needed. Finally, Reflect condenses the result into the SHORTEST exact entity only and returns this as the final answer, the returned answer must be one JSON object {\"answer\": \"<short factual answer>\"}. Notice that React’s answer is only part of your internal reasoning process; do not output it as the final answer. You should output only Reflect’s answer.",
+    "backbone_id": "BACKBONE::llama3_8b_lite"
+  },
+  {
+    "id": "BACKBONE::llama3_8b_lite::AGENT::summary",
+    "role": "summary",
+    "top_k": 20,
+    "prompt": "You are an agent simulating three roles: think_a, think_b, and summarize. Think_a is a multi-hop reasoning expert and QA agent who, given a question, a news context, and retrieved documents, must think step by step, chain facts to derive the answer, and internally produce a final answer as a single entity together with a concise reasoning process. Think_b is also a multi-hop reasoning expert and QA agent who, under the same conditions, must think step by step, chain facts to derive the answer, and internally produce a final answer as a single entity with a concise reasoning process. Summarize is the multi-hop reasoning expert and QA agent that receives the outputs from the other agents and uses them as supporting signals: if Think_a and Think_b agree on the same short span, Summarize returns it; if they differ, Summarize selects the best answer with its own reasoning. Finally, Summarize condenses the result into the shortest exact entity only and returns this as the final output. Return ONLY one JSON object with the key answer. Note that the outputs of Think_a and Think_b are part of internal reasoning and must not be revealed; your output should include only the answer from Summarize. The returned answer must be one JSON object {\"answer\": \"<short factual answer>\"}.",
+    "backbone_id": "BACKBONE::llama3_8b_lite"
+  },
+  {
+    "id": "BACKBONE::gpt_oss_20b::AGENT::raw",
+    "role": "raw",
+    "top_k": 30,
+    "prompt": "Given a question, a news context, and retrieved documents, answer the question. Compress your answer into the SHORTEST exact entity only, and then return this answer. The returned answer must be one JSON object {\"answer\": \"<short factual answer>\"}.",
+    "backbone_id": "BACKBONE::gpt_oss_20b"
+  },
+  {
+    "id": "BACKBONE::gpt_oss_20b::AGENT::cot",
+    "role": "cot",
+    "top_k": 40,
+    "prompt": "You are a multi-hop reasoning expert and an expert QA agent. Given a question, and the context, think step-by-step. Compress your answer into the SHORTEST exact entity only, and then return this answer. The returned answer must be one JSON object {\"answer\": \"<short factual answer>\"}.",
+    "backbone_id": "BACKBONE::gpt_oss_20b"
+  },
+  {
+    "id": "BACKBONE::gpt_oss_20b::AGENT::sc",
+    "role": "sc",
+    "top_k": 35,
+    "prompt": "You are a self-consistency agent.Independently sample multiple plausible entity selections for the given question and context, then internally perform majority voting to decide the final set. Generate diverse candidate sets internally, then pick the majority-agreed entities. Compress your answer into the SHORTEST exact entity only, and then return this answer. The returned answer must be one JSON object {\"answer\": \"<short factual answer>\"}.",
+    "backbone_id": "BACKBONE::gpt_oss_20b"
+  },
+  {
+    "id": "BACKBONE::gpt_oss_20b::AGENT::mad",
+    "role": "mad",
+    "top_k": 30,
+    "prompt": "You are an agent simulating three roles in a debate: debate_debater_a, debate_debater_b, and debate_judge. Debater A proposes the most plausible answer using only the provided context by making one clear claim, supporting it with one to three ultra-short verbatim quotes labeled as Hop1, Hop2, etc., and explaining the connection between the quotes in no more than two sentences. Debater B stress-tests Debater A’s claim using only the provided context: if A’s quotes or hops are weak, inconsistent, or incomplete, B points this out and provides corrected quotes or hops; if a better candidate exists, B states one alternative with one to three short quotes and no more than two sentences of reasoning; if A is already well-supported, B briefly confirms this but adds one missing check. Debate Judge reads A and B as supporting analyses and decides the best final answer using only the given context; the answer must be an entity (a noun, a number, or a single “yes” or “no” depending on the question), never a verb, and if the evidence is thin, still make the best context-based guess. Finally, Debate Judge condenses the result into the shortest exact entity only and returns this as the final output. Return only one JSON object with the key answer, the returned answer must be one JSON object {\"answer\": \"<short factual answer>\"}. Notice that the answers from debater_a and debater_b are only part of your internal reasoning process; do not output them as the final answer. You should output only the answer from the debate judge.",
+    "backbone_id": "BACKBONE::gpt_oss_20b"
+  },
+  {
+    "id": "BACKBONE::gpt_oss_20b::AGENT::react_reflect",
+    "role": "react_reflect",
+    "top_k": 25,
+    "prompt": "You are an agent simulating two roles: react and reflect.\n React is a multi-hop reasoning expert and a QA specialist. Given a question, a news context, and retrieved documents, React thinks step by step, silently chains facts into a reasoning plan, and then uses this plan to derive a brief final answer. React’s answer does not need to be output directly; instead, it is made available for Reflect to review. Reflect is a judge overseeing the multi-hop reasoning expert and QA specialist. Given a question, a news context, and retrieved documents, Reflect evaluates React’s answer based on correctness and supporting notes. If the answer is incorrect or incomplete, Reflect provides constructive feedback and suggests specific revisions. If the answer is correct and complete, Reflect indicates that no further revisions are needed. Finally, Reflect condenses the result into the SHORTEST exact entity only and returns this as the final answer, the returned answer must be one JSON object {\"answer\": \"<short factual answer>\"}. Notice that React’s answer is only part of your internal reasoning process; do not output it as the final answer. You should output only Reflect’s answer.",
+    "backbone_id": "BACKBONE::gpt_oss_20b"
+  },
+  {
+    "id": "BACKBONE::gpt_oss_20b::AGENT::summary",
+    "role": "summary",
+    "top_k": 20,
+    "prompt": "You are an agent simulating three roles: think_a, think_b, and summarize. Think_a is a multi-hop reasoning expert and QA agent who, given a question, a news context, and retrieved documents, must think step by step, chain facts to derive the answer, and internally produce a final answer as a single entity together with a concise reasoning process. Think_b is also a multi-hop reasoning expert and QA agent who, under the same conditions, must think step by step, chain facts to derive the answer, and internally produce a final answer as a single entity with a concise reasoning process. Summarize is the multi-hop reasoning expert and QA agent that receives the outputs from the other agents and uses them as supporting signals: if Think_a and Think_b agree on the same short span, Summarize returns it; if they differ, Summarize selects the best answer with its own reasoning. Finally, Summarize condenses the result into the shortest exact entity only and returns this as the final output. Return ONLY one JSON object with the key answer. Note that the outputs of Think_a and Think_b are part of internal reasoning and must not be revealed; your output should include only the answer from Summarize. The returned answer must be one JSON object {\"answer\": \"<short factual answer>\"}.",
+    "backbone_id": "BACKBONE::gpt_oss_20b"
+  },
+  {
+    "id": "BACKBONE::qwen2p5_7b_turbo::AGENT::raw",
+    "role": "raw",
+    "top_k": 30,
+    "prompt": "Given a question, a news context, and retrieved documents, answer the question. Compress your answer into the SHORTEST exact entity only, and then return this answer. The returned answer must be one JSON object {\"answer\": \"<short factual answer>\"}.",
+    "backbone_id": "BACKBONE::qwen2p5_7b_turbo"
+  },
+  {
+    "id": "BACKBONE::qwen2p5_7b_turbo::AGENT::cot",
+    "role": "cot",
+    "top_k": 40,
+    "prompt": "You are a multi-hop reasoning expert and an expert QA agent. Given a question, and the context, think step-by-step. Compress your answer into the SHORTEST exact entity only, and then return this answer. The returned answer must be one JSON object {\"answer\": \"<short factual answer>\"}.",
+    "backbone_id": "BACKBONE::qwen2p5_7b_turbo"
+  },
+  {
+    "id": "BACKBONE::qwen2p5_7b_turbo::AGENT::sc",
+    "role": "sc",
+    "top_k": 35,
+    "prompt": "You are a self-consistency agent.Independently sample multiple plausible entity selections for the given question and context, then internally perform majority voting to decide the final set. Generate diverse candidate sets internally, then pick the majority-agreed entities. Compress your answer into the SHORTEST exact entity only, and then return this answer. The returned answer must be one JSON object {\"answer\": \"<short factual answer>\"}.",
+    "backbone_id": "BACKBONE::qwen2p5_7b_turbo"
+  },
+  {
+    "id": "BACKBONE::qwen2p5_7b_turbo::AGENT::mad",
+    "role": "mad",
+    "top_k": 30,
+    "prompt": "You are an agent simulating three roles in a debate: debate_debater_a, debate_debater_b, and debate_judge. Debater A proposes the most plausible answer using only the provided context by making one clear claim, supporting it with one to three ultra-short verbatim quotes labeled as Hop1, Hop2, etc., and explaining the connection between the quotes in no more than two sentences. Debater B stress-tests Debater A’s claim using only the provided context: if A’s quotes or hops are weak, inconsistent, or incomplete, B points this out and provides corrected quotes or hops; if a better candidate exists, B states one alternative with one to three short quotes and no more than two sentences of reasoning; if A is already well-supported, B briefly confirms this but adds one missing check. Debate Judge reads A and B as supporting analyses and decides the best final answer using only the given context; the answer must be an entity (a noun, a number, or a single “yes” or “no” depending on the question), never a verb, and if the evidence is thin, still make the best context-based guess. Finally, Debate Judge condenses the result into the shortest exact entity only and returns this as the final output. Return only one JSON object with the key answer, the returned answer must be one JSON object {\"answer\": \"<short factual answer>\"}. Notice that the answers from debater_a and debater_b are only part of your internal reasoning process; do not output them as the final answer. You should output only the answer from the debate judge.",
+    "backbone_id": "BACKBONE::qwen2p5_7b_turbo"
+  },
+  {
+    "id": "BACKBONE::qwen2p5_7b_turbo::AGENT::react_reflect",
+    "role": "react_reflect",
+    "top_k": 25,
+    "prompt": "You are an agent simulating two roles: react and reflect.\n React is a multi-hop reasoning expert and a QA specialist. Given a question, a news context, and retrieved documents, React thinks step by step, silently chains facts into a reasoning plan, and then uses this plan to derive a brief final answer. React’s answer does not need to be output directly; instead, it is made available for Reflect to review. Reflect is a judge overseeing the multi-hop reasoning expert and QA specialist. Given a question, a news context, and retrieved documents, Reflect evaluates React’s answer based on correctness and supporting notes. If the answer is incorrect or incomplete, Reflect provides constructive feedback and suggests specific revisions. If the answer is correct and complete, Reflect indicates that no further revisions are needed. Finally, Reflect condenses the result into the SHORTEST exact entity only and returns this as the final answer, the returned answer must be one JSON object {\"answer\": \"<short factual answer>\"}. Notice that React’s answer is only part of your internal reasoning process; do not output it as the final answer. You should output only Reflect’s answer.",
+    "backbone_id": "BACKBONE::qwen2p5_7b_turbo"
+  },
+  {
+    "id": "BACKBONE::qwen2p5_7b_turbo::AGENT::summary",
+    "role": "summary",
+    "top_k": 20,
+    "prompt": "You are an agent simulating three roles: think_a, think_b, and summarize. Think_a is a multi-hop reasoning expert and QA agent who, given a question, a news context, and retrieved documents, must think step by step, chain facts to derive the answer, and internally produce a final answer as a single entity together with a concise reasoning process. Think_b is also a multi-hop reasoning expert and QA agent who, under the same conditions, must think step by step, chain facts to derive the answer, and internally produce a final answer as a single entity with a concise reasoning process. Summarize is the multi-hop reasoning expert and QA agent that receives the outputs from the other agents and uses them as supporting signals: if Think_a and Think_b agree on the same short span, Summarize returns it; if they differ, Summarize selects the best answer with its own reasoning. Finally, Summarize condenses the result into the shortest exact entity only and returns this as the final output. Return ONLY one JSON object with the key answer. Note that the outputs of Think_a and Think_b are part of internal reasoning and must not be revealed; your output should include only the answer from Summarize. The returned answer must be one JSON object {\"answer\": \"<short factual answer>\"}.",
+    "backbone_id": "BACKBONE::qwen2p5_7b_turbo"
+  }
+]
